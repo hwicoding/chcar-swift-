@@ -6,54 +6,75 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI // <<<<<<<<<<
 
 struct ContentView: View {
     
     // --- Property ---
-    @ State var carInfo: [CarInfo] = [
-        CarInfo(image: "hyundai_tucson_01", brand: "현대", model: "투싼", year: 2017, km: 20000, price: 2000),
-        CarInfo(image: "hyundai_tucson_02", brand: "현대", model: "투싼", year: 2018, km: 30000, price: 3000),
-    ]
+    @State var cars: [CarJSON] = []
     
     var body: some View {
-        
         NavigationView(content: {
-            List(carInfo, rowContent: {carinfo in
-                
-                // Row
-                HStack(content: {
-                    Image(carinfo.image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 60)
-                    
-                    // Colmn
-                    VStack(alignment: .leading, content: {
-                        // Row
-                        HStack(content: {
-                            Text(carinfo.brand)
-                                .font(.system(size: 20))
-                                .bold()
-                            Text(carinfo.model)
-                                .font(.system(size: 20))
-                                .bold()
-                        }) // HStack
-                        
-                        Text("생산년도 : \(carinfo.year)")
-                            .font(.system(size: 12))
-                        Text("주행거리 : \(carinfo.km)km")
-                            .font(.system(size: 12))
-                        Text("가격 : \(carinfo.price)€")
-                            .font(.system(size: 12))
-                        
-                    }) // VStack
-                }) // HStack
+            List(content: {
+                ForEach(cars, id: \.seq, content: {car in
+                    NavigationLink(destination: DetailPage(), label: {
+                        CarView(carModel: car)
+                    }) // NavigationLink
+                }) // ForEach
             }) // List
-            .navigationTitle("ChCar")
+            .navigationTitle("Chcar")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text("Chcar")
+                            .font(.custom("", size: 48))
+                            .bold()
+                    } // VStack
+                } // ToolbarItem
+            } // toolbar
         }) // NavigationView
+        .onAppear(perform: {
+            let queryModel = QueryModel()
+            Task{
+                cars = try await queryModel.loadData(url: URL(string: "http://localhost:8080/Chcar/JSP/Swift/SelectCar.jsp")!)
+            }
+            print("도현에몽: \(cars)")
+        })
     } // body
 } // End
+
+struct CarView: View {
+    var carModel: CarJSON
+    var body: some View {
+        HStack(content: {
+            let imageURL = URL(string: "http://localhost:8080/Chcar/images/\(carModel.image)")!
+            WebImage(url: imageURL)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100 ,height: 120)
+//                                .clipShape(.circle)
+//                                .shadow(radius: 20)
+            VStack(alignment: .leading, content: {
+                HStack(content: {
+                    Text(carModel.brand)
+                        .bold()
+                        .font(.system(size: 20))
+                    Text(carModel.model)
+                        .bold()
+                        .font(.system(size: 20))
+                })
+                
+                Text("생산연도 : \(carModel.year)년")
+                    .font(.system(size: 14))
+                Text("주행거리 : \(carModel.km)km")
+                    .font(.system(size: 14))
+                Text("가격 : \(carModel.price)€")
+                    .font(.system(size: 14))
+            }) // VStack
+        }) // HStack
+    }
+}
 
 #Preview {
     ContentView()

@@ -7,21 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E505DCD62BFB54D2009CBBFF /* QueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E505DCD52BFB54D2009CBBFF /* QueryModel.swift */; };
+		E505DCD92BFB6353009CBBFF /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E505DCD82BFB6353009CBBFF /* SDWebImageSwiftUI */; };
 		E565551E2BF6247A00CB8BDC /* ChcarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565551D2BF6247A00CB8BDC /* ChcarApp.swift */; };
 		E56555202BF6247A00CB8BDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565551F2BF6247A00CB8BDC /* ContentView.swift */; };
 		E56555222BF6247B00CB8BDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56555212BF6247B00CB8BDC /* Assets.xcassets */; };
 		E56555252BF6247B00CB8BDC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56555242BF6247B00CB8BDC /* Preview Assets.xcassets */; };
-		E565552F2BF625FE00CB8BDC /* CarInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565552E2BF625FE00CB8BDC /* CarInfo.swift */; };
+		E565552F2BF625FE00CB8BDC /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E565552E2BF625FE00CB8BDC /* JSONModel.swift */; };
 		E56555312BF6347A00CB8BDC /* DetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56555302BF6347A00CB8BDC /* DetailPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E505DCD52BFB54D2009CBBFF /* QueryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryModel.swift; sourceTree = "<group>"; };
 		E565551A2BF6247A00CB8BDC /* Chcar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chcar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E565551D2BF6247A00CB8BDC /* ChcarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChcarApp.swift; sourceTree = "<group>"; };
 		E565551F2BF6247A00CB8BDC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E56555212BF6247B00CB8BDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E56555242BF6247B00CB8BDC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E565552E2BF625FE00CB8BDC /* CarInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarInfo.swift; sourceTree = "<group>"; };
+		E565552E2BF625FE00CB8BDC /* JSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONModel.swift; sourceTree = "<group>"; };
 		E56555302BF6347A00CB8BDC /* DetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -30,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E505DCD92BFB6353009CBBFF /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,7 +89,7 @@
 		E565552C2BF625DB00CB8BDC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E565552E2BF625FE00CB8BDC /* CarInfo.swift */,
+				E565552E2BF625FE00CB8BDC /* JSONModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -93,6 +97,7 @@
 		E565552D2BF625E400CB8BDC /* VM */ = {
 			isa = PBXGroup;
 			children = (
+				E505DCD52BFB54D2009CBBFF /* QueryModel.swift */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -113,6 +118,9 @@
 			dependencies = (
 			);
 			name = Chcar;
+			packageProductDependencies = (
+				E505DCD82BFB6353009CBBFF /* SDWebImageSwiftUI */,
+			);
 			productName = Chcar;
 			productReference = E565551A2BF6247A00CB8BDC /* Chcar.app */;
 			productType = "com.apple.product-type.application";
@@ -141,6 +149,9 @@
 				Base,
 			);
 			mainGroup = E56555112BF6247A00CB8BDC;
+			packageReferences = (
+				E505DCD72BFB6352009CBBFF /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = E565551B2BF6247A00CB8BDC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -167,10 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E565552F2BF625FE00CB8BDC /* CarInfo.swift in Sources */,
+				E565552F2BF625FE00CB8BDC /* JSONModel.swift in Sources */,
 				E56555202BF6247A00CB8BDC /* ContentView.swift in Sources */,
 				E565551E2BF6247A00CB8BDC /* ChcarApp.swift in Sources */,
 				E56555312BF6347A00CB8BDC /* DetailPage.swift in Sources */,
+				E505DCD62BFB54D2009CBBFF /* QueryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +386,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E505DCD72BFB6352009CBBFF /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E505DCD82BFB6353009CBBFF /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E505DCD72BFB6352009CBBFF /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E56555122BF6247A00CB8BDC /* Project object */;
 }
