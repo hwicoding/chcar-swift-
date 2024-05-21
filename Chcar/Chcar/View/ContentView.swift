@@ -17,20 +17,39 @@ struct ContentView: View {
         NavigationView(content: {
             List(content: {
                 ForEach(cars, id: \.seq, content: {car in
-                    NavigationLink(destination: DetailPage(), label: {
+                    NavigationLink(destination: DetailPage(cars: car), label: {
                         CarView(carModel: car)
+                        
                     }) // NavigationLink
                 }) // ForEach
             }) // List
-            .navigationTitle("Chcar")
-            .navigationBarTitleDisplayMode(.inline)
+//            .environment(\.listRowInsets)
+            .listStyle(.automatic)
+//            .navigationTitle("Chcar")
+//            .navigationBarTitleDisplayMode(.large)
             .toolbar{
-                ToolbarItem(placement: .principal) {
-                    VStack {
-                        Text("Chcar")
-                            .font(.custom("", size: 48))
-                            .bold()
-                    } // VStack
+                ToolbarItem(placement: .topBarLeading) {
+                    VStack(alignment: .leading, content: {
+                        HStack(content: {
+                            Image("logo_green")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 30)
+                                .padding(.leading, 10)
+                            
+                            Spacer()
+                            
+                            NavigationLink(destination: AddView(), label: {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 10))
+                                    .frame(width:36, height: 36)
+                                    .foregroundColor(.white)
+                                    .background(Color.gray)
+                                    .cornerRadius(10)
+                                    .padding(.leading, 160)
+                            }) // NavigationLink
+                        }) // HStack
+                    }) // VStack
                 } // ToolbarItem
             } // toolbar
         }) // NavigationView
@@ -39,7 +58,6 @@ struct ContentView: View {
             Task{
                 cars = try await queryModel.loadData(url: URL(string: "http://localhost:8080/Chcar/JSP/Swift/SelectCar.jsp")!)
             }
-            print("도현에몽: \(cars)")
         })
     } // body
 } // End
@@ -47,6 +65,7 @@ struct ContentView: View {
 struct CarView: View {
     var carModel: CarJSON
     var body: some View {
+        
         HStack(content: {
             let imageURL = URL(string: "http://localhost:8080/Chcar/images/\(carModel.image)")!
             WebImage(url: imageURL)
